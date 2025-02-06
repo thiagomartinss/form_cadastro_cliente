@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./assets/style/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <title>Cadastro de cliente</title>
+    </head>
+    <body>
+        <main>
+            <section>
+                <h1>Cadastro de cliente</h1>
+                <form id="form">
+                    <div class="label-input">
+                        <label for="name">Nome</label>
+                        <div class="input" id="div-name">
+                            <input type="text" id="name" name="name" autocomplete="off" class="input-dado"  placeholder="João" required>
+                            <i class="fa-regular fa-user"></i>
+                        </div>
+                    </div>
+                    <div class="label-input">
+                        <label for="last-name">Último nome</label>
+                        <div class="input" id="div-last-name">
+                            <input type="text" id="last-name" name="last-name" autocomplete="off" class="input-dado" placeholder="da Silva" required>
+                            <i class="fa-regular fa-user"></i>
+                        </div>
+                    </div>
+                    <div class="label-input">
+                        <label for="cpf">CPF <span>(sem pontos e traços)</span></label>
+                        <div class="input" id="div-cpf">
+                            <input type="text" name="cpf" id="cpf" autocomplete="off" maxlength="14" class="input-dado" required>
+                            <i class="fa-regular fa-file"></i>
+                        </div>
+                    </div>
+                    <div class="label-input">
+                        <label for="rg">RG <span>(sem pontos e traços)</span></label>
+                        <div class="input" id="div-rg">
+                            <input type="text" name="rg" id="rg" autocomplete="off" maxlength="12" class="input-dado" required>
+                            <i class="fa-regular fa-file"></i>
+                        </div>
+                    </div>
+                    <div class="label-input">
+                        <label for="email">E-mail</label>
+                        <div class="input">
+                            <input type="email" name="email" id="email" autocomplete="off" class="input-dado" placeholder="meuemail@email.com">
+                            <i class="fa-regular fa-envelope"></i>
+                        </div>
+                    </div>
+                    <div class="label-input">
+                        <label for="cel">Celular</label>
+                        <div class="input" id="div-celular">
+                            <input type="tel" name="celular" id="celular" autocomplete="off" maxlength="15" class="input-dado" placeholder="(xx)xxxxx-xxxx" required>
+                            <i class="fa-solid fa-phone"></i>
+                        </div>
+                        <div>
+                            <label for="whats">Whatsapp</label>
+                            <input type="checkbox" name="whats" id="whats">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="dtNascimento">Data de nascimento</label>
+                        <div>
+                            <input type="date" name="dtNascimento" id="dtNascimento" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="prefCont">Preferência de contato: </label>
+                        <select name="prefCont" id="prefCont" required>
+                            <option value="manha">Manhã</option>
+                            <option value="tarde">Tarde</option>
+                            <option value="noite">Noite</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="contato">Aceita receber emails</label>
+                        <input type="checkbox" name="contato" id="contato" checked>
+                    </div>
+                    <button type="submit">Cadastrar</button>
+                </form>
+            </section>
+        </main>
+        <script src="./assets/JS/script.js"></script>
+    </body>
+</html>
