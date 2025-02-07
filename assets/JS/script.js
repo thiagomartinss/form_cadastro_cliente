@@ -12,17 +12,6 @@ const div_rg = document.getElementById('div-rg');
 const div_cel = document.getElementById('div-celular');
 const form = document.querySelector('form');
 
-/*máscaras para cpf ** apenas para salvar
-inputCpf.addEventListener('keypress',() =>{
-    let cpfLength = cpf.value.length;
-
-    if(cpfLength === 3 || cpfLength === 7){
-        cpf.value += '.';
-    } else if(cpfLength === 11){
-        cpf.value += '-';
-    }
-})*/
-
 // máscaras e validador de n° para cpf, rg e telefone
 inputCpf.addEventListener('input', () => {
     let cpfValue = inputCpf.value;
@@ -64,7 +53,9 @@ inputCelular.addEventListener('input', () => {
     }
 });
 
-btn.addEventListener('click', () => {
+btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    const currentDate = new Date();
     if(nome.value === '' || last_name.value === '' || inputCpf.value === '' || inputRG.value === '' || inputCelular.value === '' || dtNascimento.value === ''){
         alert('Preencha os campos obrigatórios em vermelho!');
         if(nome.value === ''){
@@ -86,11 +77,61 @@ btn.addEventListener('click', () => {
             incluirBorder(dtNascimento);
         }
         return;
+    }else if(!validarCPF(inputCpf.value)){
+        alert('CPF inválido!');
+        incluirBorder(div_cpf);
+        return;
+    }else if(validarData(dtNascimento.value)){
+        alert('Data de nascimento inválida!');
+        incluirBorder(dtNascimento);
+        return;
     }else{
-        alert('Cliente cadastrado com sucesso!');
-    }        
+        alert('Cliente cadastrado com sucesso!')
+        form.reset();
+        removerBorder(div_name);
+        removerBorder(div_last_name);
+        removerBorder(div_cpf);
+        removerBorder(div_rg);
+        removerBorder(div_cel);
+        removerBorder(dtNascimento);
+
+    }
 })
 
 function incluirBorder(campo){
     campo.style.border = '1px solid red';
+}
+function removerBorder(campo){
+    campo.style.border = 'none';
+}
+
+function validarCPF(cpf) {
+    cpf = cpf.replace(/[^\d]/g, '');
+    if (cpf.length !== 11 || /^(\d)\1+$/.test(cpf)) 
+        return false;
+
+    let soma = 0;
+    for (let i = 0; i < 9; i++) {
+        soma += parseInt(cpf.charAt(i)) * (10 - i);
+    }
+    let resto = soma % 11;
+    let digito1 = resto < 2 ? 0 : 11 - resto;
+
+    soma = 0;
+    for (let i = 0; i < 10; i++) {
+        soma += parseInt(cpf.charAt(i)) * (11 - i);
+    }
+    resto = soma % 11;
+    let digito2 = resto < 2 ? 0 : 11 - resto;
+
+    return cpf.charAt(9) == digito1 && cpf.charAt(10) == digito2;
+}
+
+function validarData(data){
+    const currentDate = new Date();
+    const dataAtual = new Date(data);
+
+    currentDate.setHours(0,0,0,0);
+    dataAtual.setHours(0,0,0,0);
+    return dataAtual > currentDate;
 }
